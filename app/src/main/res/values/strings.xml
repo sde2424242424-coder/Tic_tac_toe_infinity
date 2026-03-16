@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Tick-tack-toe infinity</string>
+    <string name="game_title">Игра</string>
+    <string name="game_status_your_turn">un</string>
+    <string name="game_divider">un</string>
+    <string name="score_draw">un</string>
+    <string name="score_ai">un</string>
+    <string name="btn_new_game">New game</string>
+    <string name="btn_reset_score" />
+    <string name="score_player" />
+    <string name="btn_cancel_game">Отмена игры</string>
+
+
+</resources>

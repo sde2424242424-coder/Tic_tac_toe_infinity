@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/landscape_hi04"
+    android:padding="0dp"
+    tools:context=".DifficultyMenuActivity">
+
+    <!-- 1. Заголовок (LEVEL) -->
+    <ImageView
+        android:id="@+id/tvTitle"
+        android:layout_width="468dp"
+        android:layout_height="381dp"
+        android:layout_marginTop="-40dp"
+        android:layout_marginRight="-105dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/level06"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 2. ОБЩАЯ ПАНЕЛЬ (Картинка с 3 дощечками и цепями) -->
+    <ImageView
+        android:id="@+id/mainPanel"
+        android:layout_width="363dp"
+        android:layout_height="535dp"
+        android:layout_marginTop="-150dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/panel_back01"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="4:5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintVertical_bias="0." />
+
+    <!-- 3. Кнопка ЛЕГКИЙ (располагаем поверх верхней дощечки) -->
+
+    <!-- 4. Кнопка СРЕДНИЙ (располагаем поверх средней дощечки) -->
+
+    <!-- 5. Кнопка СЛОЖНЫЙ (располагаем поверх нижней дощечки) -->
+
+    <ImageButton
+        android:id="@+id/btnEasy"
+        android:layout_width="140dp"
+        android:layout_height="52dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/easy01"
+        app:layout_constraintBottom_toBottomOf="@id/mainPanel"
+        app:layout_constraintEnd_toEndOf="@id/mainPanel"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@id/mainPanel"
+        app:layout_constraintTop_toTopOf="@id/mainPanel"
+        app:layout_constraintVertical_bias="0.138" />
+
+    <ImageButton
+        android:id="@+id/btnMedium"
+        android:layout_width="210dp"
+        android:layout_height="60dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/normal01"
+        app:layout_constraintBottom_toBottomOf="@id/mainPanel"
+        app:layout_constraintEnd_toEndOf="@id/mainPanel"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@id/mainPanel"
+        app:layout_constraintTop_toTopOf="@id/mainPanel"
+        app:layout_constraintVertical_bias="0.44" />
+
+    <ImageButton
+        android:id="@+id/btnHard"
+        android:layout_width="142dp"
+        android:layout_height="49dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/hard01"
+        app:layout_constraintBottom_toBottomOf="@id/mainPanel"
+        app:layout_constraintEnd_toEndOf="@id/mainPanel"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@id/mainPanel"
+        app:layout_constraintTop_toTopOf="@id/mainPanel"
+        app:layout_constraintVertical_bias="0.74" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

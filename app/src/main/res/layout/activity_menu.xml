@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/landscape_hi04"
+    tools:context=".MenuActivity">
+
+    <!-- Название игры (Логотип) -->
+    <TextView
+        android:id="@+id/tvGameTitle"
+        android:layout_width="416dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/tic_tac_toe05"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Значок бесконечности -->
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationZ="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/infinite01" />
+
+    <!-- ОБЩАЯ ПАНЕЛЬ ДЛЯ КНОПОК (Картинка с двумя дощечками) -->
+    <ImageView
+        android:id="@+id/mainMenuPanel"
+        android:layout_width="569dp"
+        android:layout_height="437dp"
+        android:layout_marginTop="-100dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/panel08"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvGameTitle"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <!-- Кнопка: ИГРА С КОМПЬЮТЕРОМ (Верхняя дощечка) -->
+    <ImageButton
+        android:id="@+id/btnVsAi"
+        android:layout_width="201dp"
+        android:layout_height="57dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/pvsc01"
+        app:layout_constraintBottom_toBottomOf="@id/mainMenuPanel"
+        app:layout_constraintEnd_toEndOf="@id/mainMenuPanel"
+        app:layout_constraintStart_toStartOf="@id/mainMenuPanel"
+        app:layout_constraintTop_toTopOf="@id/mainMenuPanel"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <!-- Кнопка: ИГРА С ДРУГОМ (Нижняя дощечка) -->
+    <ImageButton
+        android:id="@+id/btnVsFriend"
+        android:layout_width="195dp"
+        android:layout_height="71dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/pvsp01"
+        app:layout_constraintBottom_toBottomOf="@id/mainMenuPanel"
+        app:layout_constraintEnd_toEndOf="@id/mainMenuPanel"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@id/mainMenuPanel"
+        app:layout_constraintTop_toTopOf="@id/mainMenuPanel"
+        app:layout_constraintVertical_bias="0.554" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
