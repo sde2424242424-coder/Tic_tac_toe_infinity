@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-
+    implementation("androidx.lifecycle:lifecycle-process:2.8.7")
     implementation(libs.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)

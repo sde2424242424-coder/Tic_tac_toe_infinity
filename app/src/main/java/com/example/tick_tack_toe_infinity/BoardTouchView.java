@@ -3,6 +3,8 @@ package com.example.tick_tack_toe_infinity;
 import android.content.Context;
 import android.graphics.*;
 import android.graphics.drawable.Drawable;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.AttributeSet;
@@ -11,6 +13,10 @@ import android.view.View;
 import androidx.core.content.ContextCompat;
 
 public class BoardTouchView extends View {
+
+    // Звук
+    private SoundPool soundPool;
+    private int explosionSoundId;
 
     public interface OnCellTouchListener {
         void onCellTouched(int row, int col);
@@ -48,7 +54,20 @@ public class BoardTouchView extends View {
 
     public BoardTouchView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        // Настройка звука
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+        soundPool = new SoundPool.Builder()
+                .setMaxStreams(5)
+                .setAudioAttributes(audioAttributes)
+                .build();
+        explosionSoundId = soundPool.load(context, R.raw.explosion, 1);
+
         loadResources(context);
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 boardData[i][j] = ' ';
@@ -61,21 +80,21 @@ public class BoardTouchView extends View {
 
     private void loadResources(Context context) {
         // --- ЗЕЛЕНЫЕ БОМБЫ (X) ---
-        // Ряд 0
+        // Ряд 0 (Дальний)
         greenBombFrames[0][0][0] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row03_step01_fr01);
         greenBombFrames[0][0][1] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row03_step01_fr02);
         greenBombFrames[0][1][0] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row03_step02_fr01);
         greenBombFrames[0][1][1] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row03_step02_fr02);
         greenBombFrames[0][2][0] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row03_step03_fr01);
         greenBombFrames[0][2][1] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row03_step03_fr02);
-        // Ряд 1
+        // Ряд 1 (Средний)
         greenBombFrames[1][0][0] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row02_step01_fr01);
         greenBombFrames[1][0][1] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row02_step01_fr02);
         greenBombFrames[1][1][0] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row02_step02_fr01);
         greenBombFrames[1][1][1] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row02_step02_fr02);
         greenBombFrames[1][2][0] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row02_step03_fr01);
         greenBombFrames[1][2][1] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row02_step03_fr02);
-        // Ряд 2
+        // Ряд 2 (Ближний)
         greenBombFrames[2][0][0] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row01_step01_fr01);
         greenBombFrames[2][0][1] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row01_step01_fr02);
         greenBombFrames[2][1][0] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row01_step02_fr01);
@@ -107,14 +126,13 @@ public class BoardTouchView extends View {
         blueBombFrames[2][2][1] = ContextCompat.getDrawable(context, R.drawable.blue_bomb_row01_step03_fr02);
 
         // --- АНИМАЦИЯ ИСЧЕЗНОВЕНИЯ ---
-        // Зеленые
         greenDisappearFrames[0][0] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row03_disappear_fr01);
         greenDisappearFrames[0][1] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row03_disappear_fr02);
         greenDisappearFrames[1][0] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row02_disappear_fr01);
         greenDisappearFrames[1][1] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row02_disappear_fr02);
         greenDisappearFrames[2][0] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row01_disappear_fr01);
         greenDisappearFrames[2][1] = ContextCompat.getDrawable(context, R.drawable.green_bomb_row01_disappear_fr02);
-        // Синие
+
         blueDisappearFrames[0][0] = ContextCompat.getDrawable(context, R.drawable.blue_bomb_row03_disappear_fr01);
         blueDisappearFrames[0][1] = ContextCompat.getDrawable(context, R.drawable.blue_bomb_row03_disappear_fr02);
         blueDisappearFrames[1][0] = ContextCompat.getDrawable(context, R.drawable.blue_bomb_row02_disappear_fr01);
@@ -127,7 +145,6 @@ public class BoardTouchView extends View {
         this.currentGlobalTurn = turn;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                // Если бомба исчезла из ячейки - запускаем анимацию
                 if ((boardData[i][j] == 'X' || boardData[i][j] == 'O') && (newBoard[i][j] == ' ' || newBoard[i][j] == '\0')) {
                     startDisappearAnimation(i, j, boardData[i][j]);
                 }
@@ -145,14 +162,20 @@ public class BoardTouchView extends View {
 
     private void startDisappearAnimation(final int r, final int c, char type) {
         disappearType[r][c] = type;
-        disappearFrame[r][c] = 0; // Кадр 1
+        disappearFrame[r][c] = 0;
+
+        // Звук взрыва
+        if (explosionSoundId != 0) {
+            soundPool.play(explosionSoundId, 1, 1, 0, 0, 1);
+        }
+
         invalidate();
 
         animationHandler.postDelayed(() -> {
-            disappearFrame[r][c] = 1; // Кадр 2 через 150мс
+            disappearFrame[r][c] = 1;
             invalidate();
             animationHandler.postDelayed(() -> {
-                disappearFrame[r][c] = -1; // Убираем совсем через еще 150мс
+                disappearFrame[r][c] = -1;
                 invalidate();
             }, 150);
         }, 150);
@@ -163,15 +186,12 @@ public class BoardTouchView extends View {
         super.onDraw(canvas);
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 3; c++) {
-                // Если сейчас идет анимация исчезновения
                 if (disappearFrame[r][c] != -1) {
                     Drawable dImg = (disappearType[r][c] == 'X') ?
                             greenDisappearFrames[r][disappearFrame[r][c]] :
                             blueDisappearFrames[r][disappearFrame[r][c]];
                     drawPerspectiveBomb(canvas, r, c, dImg);
-                }
-                // Иначе рисуем обычную бомбу (если она есть)
-                else {
+                } else {
                     char type = boardData[r][c];
                     if (type == 'X' || type == 'O') {
                         int age = currentGlobalTurn - placementTurn[r][c];
@@ -207,20 +227,31 @@ public class BoardTouchView extends View {
     }
 
     private void buildTouchRegions(int w, int h) {
+        // РАЗДВИГАЕМ НИЖНИЙ РЯД (0.02f и 0.98f)
         float leftTop = w * 0.18f, rightTop = w * 0.82f;
-        float leftBottom = w * 0.05f, rightBottom = w * 0.95f;
-        float topY = h * 0.12f, bottomY = h * 0.88f;
+        float leftBottom = w * 0.02f, rightBottom = w * 0.98f;
+
+        // ПОДНИМАЕМ ВСЮ СЕТКУ ВЫШЕ
+        float topY = h * 0.08f;
+        float bottomY = h * 0.80f;
+
         for (int row = 0; row < 3; row++) {
             float yStart = lerp(topY, bottomY, row / 3f);
             float yEnd = lerp(topY, bottomY, (row + 1) / 3f);
+
             for (int col = 0; col < 3; col++) {
                 float x1 = lerp(lerp(leftTop, leftBottom, row / 3f), lerp(rightTop, rightBottom, row / 3f), col / 3f);
                 float x2 = lerp(lerp(leftTop, leftBottom, row / 3f), lerp(rightTop, rightBottom, row / 3f), (col + 1) / 3f);
                 float x3 = lerp(lerp(leftTop, leftBottom, (row + 1) / 3f), lerp(rightTop, rightBottom, (row + 1) / 3f), (col + 1) / 3f);
                 float x4 = lerp(lerp(leftTop, leftBottom, (row + 1) / 3f), lerp(rightTop, rightBottom, (row + 1) / 3f), col / 3f);
+
                 Path path = new Path();
-                path.moveTo(x1, yStart); path.lineTo(x2, yStart);
-                path.lineTo(x3, yEnd); path.lineTo(x4, yEnd); path.close();
+                path.moveTo(x1, yStart);
+                path.lineTo(x2, yStart);
+                path.lineTo(x3, yEnd);
+                path.lineTo(x4, yEnd);
+                path.close();
+
                 Region region = new Region();
                 region.setPath(path, new Region(0, 0, w, h));
                 cellRegions[row][col] = region;
@@ -253,5 +284,9 @@ public class BoardTouchView extends View {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         animationHandler.removeCallbacks(animationRunnable);
+        if (soundPool != null) {
+            soundPool.release();
+            soundPool = null;
+        }
     }
 }

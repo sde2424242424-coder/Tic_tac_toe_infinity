@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tick-tack-toe infinity</string>
+    <string name="app_name">Tic-tac-toe infinity</string>
     <string name="game_title">Игра</string>
     <string name="game_status_your_turn">un</string>
     <string name="game_divider">un</string>

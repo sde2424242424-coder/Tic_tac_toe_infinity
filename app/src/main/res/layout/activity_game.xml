@@ -1,12 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/gameRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/play_base_back05"
     tools:context=".GameActivity">
+
+    <!-- ФОНОВОЕ ИЗОБРАЖЕНИЕ: centerCrop предотвращает растягивание -->
+    <ImageView
+        android:id="@+id/ivBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/play_base_back09"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Вставьте это сразу после ivBackground -->
+    <ImageView
+        android:id="@+id/cloud1"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:alpha="1"
+        android:src="@drawable/cloud_png"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/cloud2"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:alpha="1"
+        android:src="@drawable/cloud_png"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/cloud3"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="0dp"
+        android:alpha="1"
+        android:src="@drawable/cloud_png"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- 1. КАРТОЧКА СЧЕТА -->
     <com.google.android.material.card.MaterialCardView
@@ -23,21 +66,22 @@
         <!-- Сюда можно добавить ваш Score Layout -->
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- 2. ИГРОВОЕ ПОЛЕ (Опускаем вниз за счет связи с нижней панелью) -->
+    <!-- 2. ИГРОВОЕ ПОЛЕ -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardBoard"
         android:layout_width="330dp"
         android:layout_height="330dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="-50dp"
         app:cardBackgroundColor="@android:color/transparent"
         app:cardElevation="0dp"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintTop_toBottomOf="@id/cardScore"
         app:layout_constraintBottom_toTopOf="@id/bottomPanel"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="1.3">
-        <!-- bias 0.8 прижимает поле ближе к кнопкам, убирая пустоту сверху -->
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardScore"
+        app:layout_constraintVertical_bias="10"
+        > <!-- Смещаем поле ближе к нижней панели -->
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -57,13 +101,13 @@
         </FrameLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- 3. НИЖНЯЯ ПАНЕЛЬ С КНОПКАМИ (Поднимаем выше) -->
+    <!-- 3. НИЖНЯЯ ПАНЕЛЬ С КНОПКАМИ -->
     <LinearLayout
         android:id="@+id/bottomPanel"
         android:layout_width="wrap_content"
         android:layout_height="270dp"
         android:layout_marginHorizontal="16dp"
-        android:background="@drawable/down_panel"
+        android:background="@drawable/down_panel01"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingHorizontal="50dp"
@@ -85,9 +129,8 @@
             android:textStyle="bold"
             android:textSize="22sp"
             android:fontFamily="sans-serif-medium"
-            android:translationY="-35dp" />
+            android:translationY="-20dp" />
 
-        <!-- Кнопка Новая игра -->
         <!-- Кнопка Новая игра -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNewGame"
@@ -99,7 +142,7 @@
             android:textStyle="bold"
             android:fontFamily="sans-serif-black"
             android:textAllCaps="true"
-            android:translationY="-40dp"
+            android:translationY="-28dp"
             app:backgroundTint="@android:color/transparent"
             app:strokeWidth="0dp"
             app:elevation="0dp"
@@ -118,7 +161,7 @@
             android:textStyle="bold"
             android:fontFamily="sans-serif-black"
             android:textAllCaps="true"
-            android:translationY="-40dp"
+            android:translationY="-28dp"
             app:backgroundTint="@android:color/transparent"
             app:strokeWidth="0dp"
             app:elevation="0dp"

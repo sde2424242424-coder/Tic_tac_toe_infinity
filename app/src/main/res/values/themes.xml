@@ -6,6 +6,7 @@
         <item name="colorPrimaryVariant">#75DDFE</item>
         <item name="colorOnPrimary">#45841B</item>
         <item name="colorSecondary">@color/teal_200</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
 </resources>
