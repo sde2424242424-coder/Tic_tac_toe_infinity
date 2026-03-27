@@ -1,3 +1,0 @@
-com.example.tick_tack_toe_infinity.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme
