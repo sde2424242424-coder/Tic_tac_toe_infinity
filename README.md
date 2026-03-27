@@ -60,8 +60,8 @@ In this project, the fundamentals of Android development were learned and applie
 ## 📸 Screenshots
 <p align="center">
   <img src="screenshots/main.jpg" width="200">
-  <img src="screenshots/g_.jpg" width="200">
   <img src="screenshots/c_d.jpg" width="200">
+  <img src="screenshots/g_.jpg" width="200">
   <img src="screenshots/result.jpg" width="200">
 </p>
 
