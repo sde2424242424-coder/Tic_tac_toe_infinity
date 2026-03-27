@@ -1,0 +1,6 @@
+com.example.tick_tack_toe_infinity.test.app-androidTest-0 C:\Users\Public\App\Tick_tack_toe_infinity\app\build\generated\res\resValues\androidTest\debug
+com.example.tick_tack_toe_infinity.test.app-updated_navigation_xml-1 C:\Users\Public\App\Tick_tack_toe_infinity\app\build\generated\updated_navigation_xml\debugAndroidTest
+com.example.tick_tack_toe_infinity.test.app-mergeDebugAndroidTestResources-2 C:\Users\Public\App\Tick_tack_toe_infinity\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.tick_tack_toe_infinity.test.app-mergeDebugAndroidTestResources-3 C:\Users\Public\App\Tick_tack_toe_infinity\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.tick_tack_toe_infinity.test.app-debugAndroidTest-4 C:\Users\Public\App\Tick_tack_toe_infinity\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
+com.example.tick_tack_toe_infinity.test.app-core-1.7.0-5 C:\Users\Дима\.gradle\caches\8.13\transforms\15ac76fa687984b3d126dc192060175d\transformed\core-1.7.0\res

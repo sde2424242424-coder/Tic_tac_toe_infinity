@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="colorPrimary">#FF3700B3</color>
+    <color name="game_bg">#FF3700B3</color>
+    <color name="game_divider">#FF3700B3</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">Tic-tac-toe infinity</string>
+    <string name="btn_cancel_game">Отмена игры</string>
+    <string name="btn_new_game">New game</string>
+    <string name="btn_reset_score"/>
+    <string name="game_divider">un</string>
+    <string name="game_status_your_turn">un</string>
+    <string name="game_title">Игра</string>
+    <string name="score_ai">un</string>
+    <string name="score_draw">un</string>
+    <string name="score_player"/>
+    <style name="GameCellButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+
+        
+        <item name="android:textColor">@android:color/black</item>
+
+        
+        <item name="android:backgroundTint">@android:color/transparent</item>
+
+        
+        <item name="android:padding">4dp</item>
+
+        
+        <item name="android:textAllCaps">false</item>
+        
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+
+
+        
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+
+        
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+    </style>
+    <style name="Theme.TicktacktoeInfinity" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#75DDFE</item>
+        <item name="colorPrimaryVariant">#75DDFE</item>
+        <item name="colorOnPrimary">#45841B</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>
