@@ -60,16 +60,16 @@ In this project, the fundamentals of Android development were learned and applie
 ## 📸 Screenshots
 
 ### Main Screen
-![Main Screen](screenshots/main.png)
+![Main Screen](screenshots/main.jpg)
 
 ### Difficulty Menu
-![Choice Difficulties Screen](screenshots/c_d.png)
+![Choice Difficulties Screen](screenshots/c_d.jpg)
 
 ### Gameplay
-![Gameplay](screenshots/g_.png)
+![Gameplay](screenshots/g_.jpg)
 
 ### Game Over
-![Game Over](screenshots/result.png)
+![Game Over](screenshots/result.jpg)
 
 ---
 
